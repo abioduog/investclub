@@ -7,7 +7,8 @@
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "cd client && npm install && npm run build",
-    "vercel-build": "npm run build"
+    "vercel-build": "cd client && npm install && npm run build",
+    "postinstall": "cd client && npm install && cd ../server && npm install"
   },
   "dependencies": {
     "@vercel/blob": "^0.22.0",
