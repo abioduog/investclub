@@ -1,57 +1,45 @@
 import React, { useState } from 'react';
 import { FileUpload } from '../common/FileUpload';
-import { fileUploadService } from '../../services/fileUploadService';
+import { uploadFile } from '../../services/fileUploadService';
 import { useToast } from '../../contexts/ToastContext';
 
 interface ContributionDetails {
   amount: number;
-  transferDate: string;
-  bankName: string;
-  accountNumber: string;
-  proofFileId?: string;
+  date: string;
+  proofUrl?: string;
 }
 
 export const ContributionUpload: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [contributionDetails, setContributionDetails] = useState<ContributionDetails>({
+  const [contribution, setContribution] = useState<ContributionDetails>({
     amount: 0,
-    transferDate: '',
-    bankName: '',
-    accountNumber: '',
+    date: new Date().toISOString().split('T')[0]
   });
   const toast = useToast();
 
   const handleFileUpload = async (file: File) => {
     try {
-      setIsSubmitting(true);
-      const response = await fileUploadService.uploadFile(file, 'contribution');
-      setContributionDetails(prev => ({
+      const response = await uploadFile(file, 'contribution');
+      setContribution(prev => ({
         ...prev,
-        proofFileId: response.fileId
+        proofUrl: response.url
       }));
       toast.success('Proof of payment uploaded successfully');
     } catch (error) {
       toast.error('Failed to upload proof of payment');
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contributionDetails.proofFileId) {
+    if (!contribution.proofUrl) {
       toast.error('Please upload proof of payment');
       return;
     }
-    
     try {
-      setIsSubmitting(true);
-      // TODO: Implement API call to submit contribution details
+      // API call to submit contribution
       toast.success('Contribution submitted successfully');
     } catch (error) {
       toast.error('Failed to submit contribution');
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -64,74 +52,43 @@ export const ContributionUpload: React.FC = () => {
           <input
             type="number"
             id="amount"
-            min={5000}
-            value={contributionDetails.amount}
-            onChange={e => setContributionDetails(prev => ({
+            value={contribution.amount}
+            onChange={(e) => setContribution(prev => ({
               ...prev,
-              amount: Number(e.target.value)
+              amount: parseFloat(e.target.value)
             }))}
             required
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="transferDate">Transfer Date</label>
+          <label htmlFor="date">Date</label>
           <input
             type="date"
-            id="transferDate"
-            value={contributionDetails.transferDate}
-            onChange={e => setContributionDetails(prev => ({
+            id="date"
+            value={contribution.date}
+            onChange={(e) => setContribution(prev => ({
               ...prev,
-              transferDate: e.target.value
+              date: e.target.value
             }))}
             required
           />
         </div>
-
-        <div className="form-group">
-          <label htmlFor="bankName">Bank Name</label>
-          <input
-            type="text"
-            id="bankName"
-            value={contributionDetails.bankName}
-            onChange={e => setContributionDetails(prev => ({
-              ...prev,
-              bankName: e.target.value
-            }))}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="accountNumber">Account Number</label>
-          <input
-            type="text"
-            id="accountNumber"
-            value={contributionDetails.accountNumber}
-            onChange={e => setContributionDetails(prev => ({
-              ...prev,
-              accountNumber: e.target.value
-            }))}
-            required
-          />
-        </div>
-
         <div className="form-group">
           <label>Proof of Payment</label>
           <FileUpload
-            acceptedTypes={['image/jpeg', 'image/png', 'application/pdf']}
+            acceptedTypes={['image/*', 'application/pdf']}
             maxSizeMB={2}
             onFileSelect={handleFileUpload}
-            label="Upload proof of payment"
+            label="Upload Proof of Payment"
           />
+          {contribution.proofUrl && (
+            <a href={contribution.proofUrl} target="_blank" rel="noopener noreferrer">
+              View uploaded proof
+            </a>
+          )}
         </div>
-
-        <button 
-          type="submit" 
-          className="submit-button"
-          disabled={isSubmitting || !contributionDetails.proofFileId}
-        >
-          {isSubmitting ? 'Submitting...' : 'Submit Contribution'}
+        <button type="submit" className="submit-btn">
+          Submit Contribution
         </button>
       </form>
     </div>

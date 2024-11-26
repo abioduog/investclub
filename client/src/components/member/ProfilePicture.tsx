@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileUpload } from '../common/FileUpload';
-import { fileUploadService } from '../../services/fileUploadService';
+import { uploadFile } from '../../services/fileUploadService';
 import { useToast } from '../../contexts/ToastContext';
 import defaultAvatar from '../../assets/default-avatar.png';
 
@@ -19,7 +19,7 @@ export const ProfilePicture: React.FC<ProfilePictureProps> = ({
   const handleProfilePictureUpload = async (file: File) => {
     try {
       setIsUploading(true);
-      const response = await fileUploadService.uploadFile(file, 'profile');
+      const response = await uploadFile(file, 'profile');
       onUpdate(response.url);
       toast.success('Profile picture updated successfully');
     } catch (error) {
