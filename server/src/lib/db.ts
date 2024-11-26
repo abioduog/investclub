@@ -63,6 +63,11 @@ export const closeDb = async () => {
   }
 };
 
+interface RunResult {
+  lastID: number;
+  changes: number;
+}
+
 export const db = {
   async get<T = any>(sql: string, params: any[] = []): Promise<T | undefined> {
     const instance = await getDb();
@@ -71,7 +76,7 @@ export const db = {
 
   async run(sql: string, params: any[] = []): Promise<{ lastID: number }> {
     const instance = await getDb();
-    const result = await instance.run(sql, params);
-    return { lastID: result.lastID };
+    const result = await instance.run(sql, params) as RunResult;
+    return { lastID: result.lastID || 0 };
   }
 }; 
