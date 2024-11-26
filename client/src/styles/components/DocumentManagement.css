@@ -1,0 +1,83 @@
+.document-management {
+  padding: 20px;
+}
+
+.upload-section {
+  margin-bottom: 30px;
+}
+
+.documents-list {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.document-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.document-item:last-child {
+  border-bottom: none;
+}
+
+.document-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.document-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.document-size,
+.document-date {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.document-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.view-button,
+.delete-button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.view-button {
+  background-color: #2196f3;
+  color: white;
+  text-decoration: none;
+}
+
+.delete-button {
+  background-color: #ff4444;
+  color: white;
+}
+
+.view-button:hover {
+  background-color: #1976d2;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+.no-documents {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+} 

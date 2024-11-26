@@ -1,0 +1,238 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #2d3748;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #718096;
+  padding: 0.5rem;
+}
+
+.modal-close:hover {
+  color: #2d3748;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Form Styles */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button.primary {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+}
+
+.button.primary:hover {
+  background-color: #0052a3;
+}
+
+.button.secondary {
+  background-color: white;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.button.secondary:hover {
+  background-color: #f7fafc;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    width: 95%;
+  }
+}
+
+/* Investment Participation Modal Styles */
+.investment-summary {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.summary-item .label {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.summary-item .value {
+  font-weight: 600;
+}
+
+.terms-section {
+  margin: 24px 0;
+}
+
+.terms-section h4 {
+  margin-bottom: 16px;
+  color: #343a40;
+}
+
+.terms-content {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.terms-content ul {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.terms-content li {
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.risk-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.risk-badge.low {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.risk-badge.medium {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.risk-badge.high {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.modal-form input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.modal-form small {
+  display: block;
+  margin-top: 4px;
+  color: #6c757d;
+  font-size: 0.875rem;
+} 

@@ -1,0 +1,22 @@
+{
+  "name": "alumni-investment-portal",
+  "version": "1.0.0",
+  "description": "Alumni Investment Club Portal",
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm install && npm run build",
+    "vercel-build": "npm run build"
+  },
+  "dependencies": {
+    "@vercel/blob": "^0.22.0",
+    "formidable": "^3.5.1",
+    "sqlite3": "^5.1.7",
+    "sqlite": "^5.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "@types/formidable": "^3.4.5"
+  }
+}
