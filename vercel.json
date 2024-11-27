@@ -20,19 +20,41 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server/src/index.ts"
+      "dest": "/server/src/index.ts"
     },
     {
-      "handle": "filesystem"
+      "src": "/static/(.*)",
+      "dest": "/client/build/static/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/client/build/assets/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/client/build/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/client/build/manifest.json"
+    },
+    {
+      "src": "/logo192.png",
+      "dest": "/client/build/logo192.png"
+    },
+    {
+      "src": "/logo512.png",
+      "dest": "/client/build/logo512.png"
     },
     {
       "src": "/(.*)",
-      "dest": "client/build/index.html"
+      "dest": "/client/build/index.html"
     }
   ],
   "env": {
     "BLOB_READ_WRITE_TOKEN": "vercel_blob_rw_2HWzpsshpXLcKO4Y_PJqeQXQRkUlJq8yUIdWeHfFRkZx4XX",
     "CI": "false",
-    "DISABLE_ESLINT_PLUGIN": "true"
+    "DISABLE_ESLINT_PLUGIN": "true",
+    "NODE_ENV": "production"
   }
 } 
