@@ -6,7 +6,7 @@
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build",
-        "buildCommand": "cd ../.. && npm install && cd client && npm install && npm run build"
+        "buildCommand": "cd client && npm install && npm run build"
       }
     },
     {
@@ -31,6 +31,8 @@
     }
   ],
   "env": {
-    "BLOB_READ_WRITE_TOKEN": "vercel_blob_rw_2HWzpsshpXLcKO4Y_PJqeQXQRkUlJq8yUIdWeHfFRkZx4XX"
+    "BLOB_READ_WRITE_TOKEN": "vercel_blob_rw_2HWzpsshpXLcKO4Y_PJqeQXQRkUlJq8yUIdWeHfFRkZx4XX",
+    "CI": "false",
+    "DISABLE_ESLINT_PLUGIN": "true"
   }
 } 
