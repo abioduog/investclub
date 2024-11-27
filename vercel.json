@@ -14,18 +14,9 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "server/src/index.ts"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "client/build/index.html"
-    }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/server/src/index.ts" },
+    { "source": "/(.*)", "destination": "/client/build/index.html" }
   ],
   "env": {
     "BLOB_READ_WRITE_TOKEN": "vercel_blob_rw_2HWzpsshpXLcKO4Y_PJqeQXQRkUlJq8yUIdWeHfFRkZx4XX",
